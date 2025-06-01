@@ -1,0 +1,277 @@
+/* Basic Reset & Body Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #6a0572; /* A deep purple */
+    --secondary-color: #8b0a99; /* A lighter purple */
+    --text-color: #e0e0e0;
+    --background-dark: #1a1a1a;
+    --background-light: #2c2c2c;
+    --border-radius-lg: 15px;
+    --border-radius-sm: 8px;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--background-dark), var(--background-light));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    color: var(--text-color);
+}
+
+/* Music Player Container */
+.music-player-container {
+    background-color: var(--background-light);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+    width: 350px; /* Fixed width for a compact player */
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* To contain shadows or overflows from elements */
+}
+
+/* Player Header */
+.player-header h4 {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
+}
+
+/* Album Cover */
+.img-container {
+    width: 180px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto 25px;
+    border-radius: 50%; /* Make it circular */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.music-player-container.play .img-container {
+    animation: rotate 15s linear infinite; /* Animation for playing state */
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Song Info */
+#title {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    white-space: nowrap; /* Prevent title wrap */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis if text overflows */
+}
+
+#artist {
+    font-size: 1em;
+    font-weight: 300;
+    color: #bbb;
+    margin-bottom: 25px;
+}
+
+/* Audio Element (hidden) */
+#audio {
+    display: none;
+}
+
+/* Progress Bar */
+.progress-container {
+    background-color: #444;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    margin: 15px 0 10px;
+    height: 6px;
+    width: 100%;
+    position: relative;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.progress {
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-sm);
+    height: 100%;
+    width: 0%; /* Controlled by JS */
+    transition: width 0.1s linear; /* Smooth progress update */
+}
+
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75em;
+    color: #999;
+    margin-top: 5px;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.action-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 10px;
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.action-btn:hover {
+    color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+.action-btn:focus {
+    outline: none;
+}
+
+.action-btn-big {
+    font-size: 2.2em;
+    color: var(--secondary-color);
+}
+
+.action-btn-big:hover {
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+/* Volume Control */
+.volume-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #bbb;
+}
+
+.volume-container i {
+    margin: 0 5px;
+}
+
+#volume {
+    -webkit-appearance: none; /* Hide default slider */
+    width: 120px;
+    height: 5px;
+    background: #555;
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.2s ease-in-out;
+}
+
+#volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+#volume::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+/* Playlist */
+.playlist-container {
+    margin-top: 30px;
+    text-align: left;
+    max-height: 150px; /* Limit height to enable scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-right: 10px; /* Space for scrollbar */
+}
+
+.playlist-container h4 {
+    font-size: 1em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+}
+
+#playlist {
+    list-style: none;
+    font-size: 0.9em;
+}
+
+#playlist li {
+    padding: 8px 0;
+    cursor: pointer;
+    color: #ccc;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+#playlist li:last-child {
+    border-bottom: none;
+}
+
+#playlist li.active,
+#playlist li:hover {
+    color: var(--secondary-color);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-sm);
+    padding-left: 5px;
+}
+
+/* Scrollbar styling for Webkit browsers (Chrome, Safari) */
+.playlist-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.playlist-container::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 10px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+
+/* Album cover rotation animation */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

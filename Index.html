@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player - Die With A Smile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="Music.css">
+</head>
+<body>
+    <div class="music-player-container">
+        <div class="player-header">
+            <h4>Now Playing</h4>
+        </div>
+
+        <div class="img-container">
+            <img src="Images/diewithsmile.jpg" alt="Lady Gaga, Bruno Mars - Die With A Smile" id="cover">
+        </div>
+
+        <h2 id="title">Die With A Smile</h2>
+        <h3 id="artist">Lady Gaga, Bruno Mars</h3>
+
+       <audio controls>
+          <source src="C:\Users\Hero\Desktop\MUSIC PLAYER UI\New Music Player\Music/Die_With_A_Smile.mp3" id="audio" type="audio/mp3">
+            
+          </audio>
+
+        <div class="progress-container" id="progress-container">
+            <div class="progress" id="progress"></div>
+            <div class="time-info">
+                <span id="currentTime">0:00</span>
+                <span id="duration">0:00</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="prev" class="action-btn">
+                <i class="fas fa-backward"></i>
+            </button>
+            <button id="play" class="action-btn action-btn-big">
+                <i class="fas fa-play"></i>
+            </button>
+            <button id="next" class="action-btn">
+                <i class="fas fa-forward"></i>
+            </button>
+        </div>
+
+        <div class="volume-container">
+            <i class="fas fa-volume-down"></i>
+            <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
+            <i class="fas fa-volume-up"></i>
+        </div>
+
+        <div class="playlist-nav">
+            <h4>Jump To Song:</h4>
+            <ul>
+                <li><a href="index.html" class="active-nav">Die With A Smile</a></li>
+                <li><a href="song2.html">Jhol Song</a></li>
+                <li><a href="song3.html">Shiddat Song</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Define which song this page should load from the 'songs' array in Music.js
+        const pageSongIndex = 0; // This page loads the first song (index 0)
+    </script>
+    <script src="Music.js"></script>
+</body>
+</html>

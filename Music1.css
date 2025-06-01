@@ -1,0 +1,268 @@
+/* Basic Reset & Body Styles (Existing) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #6a0572; /* A deep purple */
+    --secondary-color: #8b0a99; /* A lighter purple */
+    --text-color: #e0e0e0;
+    --background-dark: #1a1a1a;
+    --background-light: #2c2c2c;
+    --border-radius-lg: 15px;
+    --border-radius-sm: 8px;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--background-dark), var(--background-light));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    color: var(--text-color);
+}
+
+/* Music Player Container (Existing) */
+.music-player-container {
+    background-color: var(--background-light);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+    width: 350px; /* Fixed width for a compact player */
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Player Header (Existing) */
+.player-header h4 {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
+}
+
+/* Album Cover (Existing) */
+.img-container {
+    width: 180px;
+    height: 180px;
+    position: relative;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.music-player-container.play .img-container {
+    animation: rotate 15s linear infinite;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Song Info (Existing) */
+#title {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#artist {
+    font-size: 1em;
+    font-weight: 300;
+    color: #bbb;
+    margin-bottom: 25px;
+}
+
+/* Audio Element (hidden) - Removed from CSS. It was hidden by JavaScript if `display: none;` was applied via CSS. It's better to let JS control it completely. */
+/* If you want to hide the default audio controls, keep this: */
+audio {
+    display: none;
+}
+
+
+/* Progress Bar (Existing) */
+.progress-container {
+    background-color: #444;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    margin: 15px 0 10px;
+    height: 6px;
+    width: 100%;
+    position: relative;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.progress {
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-sm);
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75em;
+    color: #999;
+    margin-top: 5px;
+}
+
+/* Controls (Existing) */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.action-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 10px;
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.action-btn:hover {
+    color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+.action-btn:focus {
+    outline: none;
+}
+
+.action-btn-big {
+    font-size: 2.2em;
+    color: var(--secondary-color);
+}
+
+.action-btn-big:hover {
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+/* Volume Control (Existing) */
+.volume-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #bbb;
+}
+
+.volume-container i {
+    margin: 0 5px;
+}
+
+#volume {
+    -webkit-appearance: none;
+    width: 120px;
+    height: 5px;
+    background: #555;
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.2s ease-in-out;
+}
+
+#volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+#volume::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+/* Playlist Navigation (NEW STYLES) */
+.playlist-nav {
+    margin-top: 25px;
+    text-align: center; /* Center the list itself */
+    font-size: 0.9em;
+}
+
+.playlist-nav h4 {
+    font-size: 1em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.playlist-nav ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    display: flex; /* Arrange links horizontally */
+    justify-content: center; /* Center the links */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 10px; /* Space between links */
+}
+
+.playlist-nav li {
+    display: inline-block; /* For older browser compatibility and explicit control */
+}
+
+.playlist-nav a {
+    text-decoration: none;
+    color: #ccc;
+    padding: 8px 12px;
+    border-radius: var(--border-radius-sm);
+    background-color: #333;
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap; /* Prevent text wrapping inside links */
+}
+
+.playlist-nav a:hover {
+    color: var(--secondary-color);
+    background-color: #444;
+}
+
+.playlist-nav a.active-nav {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+/* Removed old #playlist styles because it's no longer dynamically built/interacted with in this multi-page setup */
+/* The HTML for playlist container and ul is gone as per the new multi-page design for simplified demonstration */
+
+
+/* Album cover rotation animation (Existing) */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
